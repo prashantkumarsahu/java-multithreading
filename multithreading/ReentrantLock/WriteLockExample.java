@@ -1,6 +1,5 @@
-package multithreading;
+package multithreading.ReentrantLock;
 
-import lombok.extern.java.Log;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

@@ -1,4 +1,4 @@
-package multithreading;
+package multithreading.ConcurrentHashMap;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;

@@ -1,4 +1,4 @@
-package multithreading;
+package multithreading.ReentrantLock;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -18,23 +18,15 @@ class ThreadA extends Thread{
     public void run() {
         try{
             // synchronized, wait, notify,notifyAll does not work with ReentrantLocks
-            // synchronized (lock) {
             lock.lock();
-
-//            while (!lock.tryLock()) {
-//                lock.wait();
-//            }
 
             for (int i = 0; i < 100; i++) {
                 System.out.print("A ");
                 Thread.sleep(1000);
                 nextCondition.signal();
                 currentCondition.await();
-//                lock.unlock();
-//                lock.notifyAll();
             }
             nextCondition.signal();
-            // }
 
         }catch (Exception ex){
             System.out.println("Exception 1 :"+ex.getMessage());
@@ -58,11 +50,6 @@ class ThreadB extends Thread{
     @Override
     public void run() {
         try{
-            // synchronized (lock) {
-
-//            while (!lock.tryLock()) {
-//                lock.wait();
-//            }
             lock.lock();
 
             for (int i = 0; i < 100; i++) {
@@ -70,11 +57,8 @@ class ThreadB extends Thread{
                 Thread.sleep(1000);
                 nextCondition.signal();
                 currentCondition.await();
-//                lock.unlock();
-//                lock.notifyAll();
             }
             nextCondition.signal();
-            //    }
 
         }catch (Exception ex){
             System.out.println("Exception 1 :"+ex.getMessage());
@@ -98,11 +82,6 @@ class ThreadC extends Thread{
     @Override
     public void run() {
         try{
-            //    synchronized (lock) {
-
-//                while(!lock.tryLock()){
-//                    lock.wait();
-//                }
             lock.lock();
 
             for (int i = 0; i < 100; i++) {
@@ -110,12 +89,8 @@ class ThreadC extends Thread{
                 Thread.sleep(1000);
                 nextCondition.signal();
                 currentCondition.await();
-
-                // lock.unlock();
-                // lock.notifyAll();
             }
             nextCondition.signal();
-            //    }
 
         }catch (Exception ex){
             System.out.println("Exception 1 :"+ex.getMessage());
@@ -125,7 +100,7 @@ class ThreadC extends Thread{
     }
 }
 
-public class ThreadSequential {
+public class ThreadSequential_ReentrantLock_Condition {
 
     public static void main(String[] args) {
 

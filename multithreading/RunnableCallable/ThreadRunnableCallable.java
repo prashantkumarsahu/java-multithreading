@@ -1,4 +1,4 @@
-package multithreading;
+package multithreading.RunnableCallable;
 
 // https://javabypatel.blogspot.com/2016/09/java-multithreading-interview-questions-answers.html
 
@@ -44,7 +44,9 @@ public class ThreadRunnableCallable {
         System.out.println("Main thread is = " + Thread.currentThread().getId());
         ThreadRunnable threadRunnable = new ThreadRunnable(); // 1 out of 3 ways to assign task to a thread
         Thread thread1 = new Thread(threadRunnable); // only way to create thread
-         thread1.start();
+//        thread1.run();
+//        thread1.run();
+        thread1.start();
         // thread1.run();
         // calling run directly on the thread without start, will NOT create a separate new thread, but will call run() method of
         // current/calling thread, which is the main thread here
