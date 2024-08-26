@@ -1,12 +1,11 @@
-package multithreading.Synchronized;
-
-import java.util.concurrent.locks.*;
+package multithreading.Locks_And_Synchronizers;
 
 class ThreadA extends Thread {
 
-    private Lock lock;
+    // private Lock lock;
+    private Object lock;
 
-    ThreadA(Lock lock){
+    ThreadA(Object lock){
         this.lock = lock;
     }
     @Override
@@ -15,16 +14,17 @@ class ThreadA extends Thread {
             // synchronized, wait, notify,notifyAll does not work with ReentrantLocks
             synchronized (lock) {
 
-                while (!lock.tryLock()) {
-                    lock.wait();
-                }
-                lock.lock();
+//                while (!lock.tryLock()) {
+//                    lock.wait();
+//                }
+//                lock.lock();
 
                 for (int i = 0; i < 100; i++) {
                     System.out.print("A ");
                     Thread.sleep(1000);
-                    lock.unlock();
+                    // lock.unlock();
                     lock.notifyAll();
+                    lock.wait();
                 }
 
             }
@@ -36,8 +36,9 @@ class ThreadA extends Thread {
 
 class ThreadB extends Thread {
 
-    private Lock lock;
-    ThreadB(Lock lock){
+    // private Lock lock;
+    private Object lock;
+    ThreadB(Object lock){
         this.lock = lock;
     }
     @Override
@@ -45,16 +46,17 @@ class ThreadB extends Thread {
         try {
             synchronized (lock) {
 
-                while (!lock.tryLock()) {
-                    lock.wait();
-                }
-                lock.lock();
+//                while (!lock.tryLock()) {
+//                    lock.wait();
+//                }
+//                lock.lock();
 
                 for (int i = 0; i < 100; i++) {
                     System.out.print("B ");
                     Thread.sleep(1000);
-                    lock.unlock();
+                    // lock.unlock();
                     lock.notifyAll();
+                    lock.wait();
                 }
             }
         } catch (InterruptedException e) {
@@ -65,8 +67,9 @@ class ThreadB extends Thread {
 
 class ThreadC extends Thread {
 
-    private Lock lock;
-    ThreadC(Lock lock){
+    // private Lock lock;
+    private Object lock;
+    ThreadC(Object lock){
         this.lock = lock;
     }
     @Override
@@ -74,17 +77,18 @@ class ThreadC extends Thread {
         try {
             synchronized (lock) {
 
-                while (!lock.tryLock()) {
-                    lock.wait();
-                }
-                lock.lock();
+//                while (!lock.tryLock()) {
+//                    lock.wait();
+//                }
+//                lock.lock();
 
                 for (int i = 0; i < 100; i++) {
                     System.out.print("C ");
                     Thread.sleep(1000);
 
-                    lock.unlock();
+                   // lock.unlock();
                     lock.notifyAll();
+                    lock.wait();
                 }
 
             }
@@ -99,7 +103,15 @@ public class SequentialThreads_UsingSynchronized {
 
     public static void main(String[] args) {
 
+        Object lock = new Object();
 
+        Thread threadA = new Thread(new ThreadA(lock));
+        Thread threadB = new Thread(new ThreadB(lock));
+        Thread threadC = new Thread(new ThreadC(lock));
+
+        threadA.start();
+        threadB.start();
+        threadC.start();
 
         // currentCondition,nextCondition
 //        ThreadA threadA = new ThreadA();

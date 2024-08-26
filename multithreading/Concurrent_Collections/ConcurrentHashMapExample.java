@@ -1,4 +1,4 @@
-package multithreading.ConcurrentHashMap;
+package multithreading.Concurrent_Collections;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
@@ -10,9 +10,9 @@ import java.util.logging.Logger;
 public class ConcurrentHashMapExample {
 
 
-    private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-    private ReentrantReadWriteLock.ReadLock readLock = lock.readLock();
-    private ReentrantReadWriteLock.WriteLock writeLock = lock.writeLock();
+    private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+    private final ReentrantReadWriteLock.ReadLock readLock = lock.readLock();
+    private final ReentrantReadWriteLock.WriteLock writeLock = lock.writeLock();
     ConcurrentHashMap<Character, Integer> freqMap = new ConcurrentHashMap();
     Character[] characters = {'a', 'b', 'c', 'a', 'd', 'c'};
 

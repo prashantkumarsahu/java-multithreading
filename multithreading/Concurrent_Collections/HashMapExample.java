@@ -1,4 +1,4 @@
-package multithreading.ConcurrentHashMap;
+package multithreading.Concurrent_Collections;
 
 import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
@@ -23,14 +23,18 @@ public class HashMapExample {
 
         for(Character c: characters){
             executorService.submit(()-> {
-                freqMap.put(c, freqMap.getOrDefault(c,0)+1);
+                freqMap.put(c, freqMap.getOrDefault(c,0)+1); //
                 // this hashmap is a shared resource between 3 threads;
                 // HashMap is not synchronized, so T2 can modify freqMap while T1 is also modifying freqMap;
                 // this can result into inconsistent updates of freqMap
                 // because HashMap not synchronized, it is faster than HashTable
             });
         }
-
+        /*
+        what HashMap does when put method is called ?
+        When "Key" is already present, then it replaces the old value, with new value and returns old value.
+        When "Key" is not present, then it adds the key-value pair and returns null.
+         */
         executorService.shutdown();
 
         executorService.awaitTermination(1, TimeUnit.MINUTES);

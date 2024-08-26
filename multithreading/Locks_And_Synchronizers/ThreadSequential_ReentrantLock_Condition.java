@@ -1,4 +1,4 @@
-package multithreading.ReentrantLock;
+package multithreading.Locks_And_Synchronizers;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -104,7 +104,7 @@ public class ThreadSequential_ReentrantLock_Condition {
 
     public static void main(String[] args) {
 
-        ReentrantLock lock = new ReentrantLock();
+        ReentrantLock lock = new ReentrantLock(); // Renentrant Lock is a Mutex object.
         Condition conditionA = lock.newCondition();
         Condition conditionB = lock.newCondition();
         Condition conditionC = lock.newCondition();

@@ -6,7 +6,10 @@ import java.util.Random;
 import java.util.concurrent.*;
 
 class ThreadRunnable implements Runnable{
-
+    // Runnable is useful for non-result oriented tasks like Update UI/ Logging/ Sending Automated emails/notifications
+    // where response is not required
+    // Since it does not return anything.
+    // Also Runnable Does not throw a checked exception.
     @Override
     public void run() {
         System.out.println("Thread " + Thread.currentThread().getId() + " is executing...");
@@ -26,7 +29,8 @@ class Result{
     public String message;
 }
 class ThreadCallable implements Callable<Integer>{
-
+    // Callable is used when we want some response back from the thread or require exception handling
+    // also it can throw a checked exception
     @Override
     public Integer call() throws Exception {
          Random random = new Random();
@@ -44,12 +48,13 @@ public class ThreadRunnableCallable {
         System.out.println("Main thread is = " + Thread.currentThread().getId());
         ThreadRunnable threadRunnable = new ThreadRunnable(); // 1 out of 3 ways to assign task to a thread
         Thread thread1 = new Thread(threadRunnable); // only way to create thread
+        thread1.run(); // will run main thread only, as we have not started thread1
 //        thread1.run();
-//        thread1.run();
-        thread1.start();
-        // thread1.run();
+         thread1.start();
+         //thread1.run(); // will now run thread1
         // calling run directly on the thread without start, will NOT create a separate new thread, but will call run() method of
         // current/calling thread, which is the main thread here
+
         // There is no relation between the newly created thread and the thread which created it. They are totally independent.
         // only Thread priority and Daemon property of the creator thread is copied into the new thread.
         // JVM will continue to exist, until any non-daemon thread is running...it will shut down only if the active ones are all daemon threads.

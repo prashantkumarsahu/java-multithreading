@@ -1,0 +1,66 @@
+
+
+1. public interface executor - only 1 method
+
+Executes the given command at some time in the future.
+The command may execute in a new thread, in a pooled thread, or in the calling thread,
+at the discretion of the Executor implementation.
+void execute(Runnable command); //
+
+
+
+2. public interface ExecutorService extends Executor
+
+Extends Executor interface.
+
+Provides methods to manage lifecycle of tasks and executor.
+It includes methods for shutting down the executor, submitting tasks, and tracking their progress.
+
+void shutdown();
+List<Runnable> shutdownNow();
+
+boolean isTerminated();
+boolean awaitTermination(long timeout, TimeUnit unit)
+
+<T> Future<T> submit(Callable<T> task);
+<T> Future<T> submit(Runnable task, T result);
+Future<?> submit(Runnable task);
+
+<T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks)
+
+
+
+3. public abstract class AbstractExecutorService implements ExecutorService
+
+
+4. public class ForkJoinPool extends AbstractExecutorService
+A specialized implementation of ExecutorService designed for work-stealing,
+where idle threads can steal tasks from busy threads to improve performance.
+It’s well-suited for divide-and-conquer algorithms.
+
+
+5. public class ThreadPoolExecutor extends AbstractExecutorService
+uses a pool of worker threads to execute tasks. It’s highly configurable and can be tuned according
+to the application’s needs (e.g., core pool size, maximum pool size, keep-alive time).
+
+
+6. public interface ScheduledExecutorService extends ExecutorService
+supports the scheduling of tasks to run after a given delay or to execute periodically.
+
+7. public class ScheduledThreadPoolExecutor extends ThreadPoolExecutor implements ScheduledExecutorService
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

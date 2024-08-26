@@ -1,4 +1,4 @@
-package multithreading.ConcurrentHashMap;
+package multithreading.Concurrent_Collections;
 
 
 import java.util.Hashtable;

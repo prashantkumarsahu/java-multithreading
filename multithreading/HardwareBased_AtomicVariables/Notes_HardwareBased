@@ -1,0 +1,6 @@
+
+
+
+AtomicInteger, AtomicLong, AtomicBoolean, AtomicReference:
+These classes provide a way to update variables atomically without using explicit synchronization.
+They are useful for counters, flags, and references where atomicity is needed.

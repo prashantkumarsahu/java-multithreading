@@ -1,4 +1,4 @@
-package multithreading.ReentrantLock;
+package multithreading.Locks_And_Synchronizers;
 
 
 import java.util.concurrent.ExecutorService;
