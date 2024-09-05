@@ -101,6 +101,11 @@ class ThreadC extends Thread {
 public class SequentialThreads_UsingSynchronized {
 
 
+    /*
+    There are two threads, one printing even number and 2nd printing odd number.
+    write code to print number 1 to N in increasing order.
+    (can be solved using wait and notify using a Boolean variable as shared lock).
+     */
     public static void main(String[] args) {
 
         Object lock = new Object();

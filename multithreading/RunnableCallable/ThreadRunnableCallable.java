@@ -37,7 +37,7 @@ class ThreadCallable implements Callable<Integer>{
          return  random.nextInt(100);
 //        Result response = new Result();
 //        response.code = 200;
-//        response.message = "Sucess";
+//        response.message = "Success";
 //        return response;
     }
 }

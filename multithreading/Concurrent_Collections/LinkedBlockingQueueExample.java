@@ -1,9 +1,9 @@
 package multithreading.Concurrent_Collections;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.logging.Logger;
+
 
 class Producer implements Runnable{
 
@@ -30,7 +30,7 @@ class Producer implements Runnable{
 
 class Consumer implements Runnable{
 
-    private static final Logger log = LoggerFactory.getLogger(Producer.class);
+    private static final Logger log = Logger.getLogger(Producer.class.toString());
     private LinkedBlockingQueue<Integer> consQueue;
     Consumer(LinkedBlockingQueue<Integer> queue){
         this.consQueue = queue;
@@ -40,10 +40,10 @@ class Consumer implements Runnable{
     public void run() {
         try {
             for (int i = 1; i <= 100; i++) {
-                log.info("Consumer consumed from Queue = {}", this.consQueue.take());
+                log.info("Consumer consumed from Queue = {}"+ this.consQueue.take());
             }
         }catch (Exception ex){
-            log.error("Producer failed to push items into LinkedBlockingQueue");
+            log.info("Producer failed to push items into LinkedBlockingQueue");
         }
     }
 }

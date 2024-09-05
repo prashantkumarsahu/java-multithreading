@@ -3,12 +3,12 @@ package multithreading.Locks_And_Synchronizers;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-class ThreadA extends Thread{
+class ThreadAA extends Thread{
     ReentrantLock lock;
     Condition currentCondition;
     Condition nextCondition;
 
-    ThreadA(ReentrantLock lock, Condition current, Condition next){
+    ThreadAA(ReentrantLock lock, Condition current, Condition next){
         this.lock = lock;
         currentCondition = current;
         nextCondition = next;
@@ -36,12 +36,12 @@ class ThreadA extends Thread{
     }
 }
 
-class ThreadB extends Thread{
+class ThreadBB extends Thread{
     ReentrantLock lock;
     Condition currentCondition;
     Condition nextCondition;
 
-    ThreadB(ReentrantLock lock, Condition current, Condition next){
+    ThreadBB(ReentrantLock lock, Condition current, Condition next){
         this.lock = lock;
         currentCondition = current;
         nextCondition = next;
@@ -68,12 +68,12 @@ class ThreadB extends Thread{
     }
 }
 
-class ThreadC extends Thread{
+class ThreadCC extends Thread{
     ReentrantLock lock;
     Condition currentCondition;
     Condition nextCondition;
 
-    ThreadC(ReentrantLock lock, Condition current, Condition next){
+    ThreadCC(ReentrantLock lock, Condition current, Condition next){
         this.lock = lock;
         currentCondition = current;
         nextCondition = next;
@@ -104,15 +104,15 @@ public class ThreadSequential_ReentrantLock_Condition {
 
     public static void main(String[] args) {
 
-        ReentrantLock lock = new ReentrantLock(); // Renentrant Lock is a Mutex object.
+        ReentrantLock lock = new ReentrantLock(); // Re-entrant Lock is a Mutex object.
         Condition conditionA = lock.newCondition();
         Condition conditionB = lock.newCondition();
         Condition conditionC = lock.newCondition();
 
         // currentCondition,nextCondition
-        ThreadA threadA = new ThreadA(lock,conditionA, conditionB);
-        ThreadB threadB = new ThreadB(lock,conditionB,conditionC);
-        ThreadC threadC = new ThreadC(lock,conditionC,conditionA);
+        ThreadAA threadA = new ThreadAA(lock,conditionA, conditionB);
+        ThreadBB threadB = new ThreadBB(lock,conditionB,conditionC);
+        ThreadCC threadC = new ThreadCC(lock,conditionC,conditionA);
 
         threadA.start();
         threadB.start();
