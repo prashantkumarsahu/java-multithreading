@@ -1,4 +1,4 @@
-package multithreading.Semaphore_CountdownLatch_3;
+package multithreading.Semaphore_CyclicBarrier_CountdownLatch_3;
 
 import java.util.concurrent.Semaphore;
 

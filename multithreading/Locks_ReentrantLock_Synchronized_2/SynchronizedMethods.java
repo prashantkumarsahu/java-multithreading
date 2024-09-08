@@ -1,4 +1,4 @@
-package multithreading.Semaphore_CountdownLatch_3;
+package multithreading.Locks_ReentrantLock_Synchronized_2;
 
 public class SynchronizedMethods {
     private boolean oneDone;
